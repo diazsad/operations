@@ -90,9 +90,9 @@ nav #timer {
 
 .memoryGame:hover::after, .columnsGame:hover::after{
     content: attr(data-hover);
-    background-color: var(--oxford-blue);
+    background-color: var(--burgundy);
     color: var(--naples-yellow);
-    border: solid var(--charcoal);
+    border: solid var(--naples-yellow);
     border-radius: 20px;
     position: absolute; 
 }
@@ -145,10 +145,10 @@ main #buttons {
 }
 
 main .button {
-    background: var(--naples-yellow);
+    background: var(--oxford-blue);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: none;
-    color: var(--oxford-blue);
+    color: var(--naples-yellow);
     padding: 15px 30px;
     text-align: center;
     text-decoration: none;
@@ -236,11 +236,11 @@ main .button:hover {
 
 /* Variables de colores */
 :root {
-    --burgundy: #85152dff;
-    --naples-yellow: #f9dc5cff;
+    --burgundy: #273a73;
+    --naples-yellow: snow;
     --vanilla: #f7eeadff;
     --mint-cream: #f4fffdff;
-    --oxford-blue: #011936ff;
+    --oxford-blue: #F26457;
     --charcoal: #465362ff;
 }
 

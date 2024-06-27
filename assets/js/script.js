@@ -23,11 +23,15 @@ function generateOperation() {
         operand1 = Math.floor(Math.random() * 100) + 1;
         result = Math.floor(Math.random() * 100) + 1;
         operand2 = result - operand1;
+        if (operand2 < 0) {
+            operand2 = operand1;
+            result = operand1 + operand2;
+        }
         correctAnswer = operand2;
         document.getElementById('question').textContent = `${operand1} + ? = ${result}`;
         answerOptions = [operand2];
         while (answerOptions.length < 21) {
-            let randomAnswer = Math.floor(Math.random() * 200) - 100;
+            let randomAnswer = Math.floor(Math.random() * 200) + 1;
             if (!answerOptions.includes(randomAnswer)) {
                 answerOptions.push(randomAnswer);
             }
@@ -41,12 +45,16 @@ function generateOperation() {
             document.getElementById('question').textContent = `${operand1} + ? = ${result}`;
         } else {
             result = operand1 - operand2;
+            if (result < 0) {
+                operand2 = operand1;
+                result = operand1 - operand2;
+            }
             correctAnswer = operand2;
             document.getElementById('question').textContent = `${operand1} - ? = ${result}`;
         }
         answerOptions = [operand2];
         while (answerOptions.length < 28) {
-            let randomAnswer = Math.floor(Math.random() * 400) - 200;
+            let randomAnswer = Math.floor(Math.random() * 400) + 1;
             if (!answerOptions.includes(randomAnswer)) {
                 answerOptions.push(randomAnswer);
             }
@@ -60,18 +68,30 @@ function generateOperation() {
             document.getElementById('question').textContent = `${operand1} + ? + ${operand3} = ${result}`;
         } else if (operationType === 'addition' && operationType2 === 'subtraction') {
             result = operand1 + operand2 - operand3;
+            if (result < 0) {
+                operand2 = operand1 + operand3;
+                result = operand1 + operand2 - operand3;
+            }
             document.getElementById('question').textContent = `${operand1} + ? - ${operand3} = ${result}`;
         } else if (operationType === 'subtraction' && operationType2 === 'addition') {
             result = operand1 - operand2 + operand3;
+            if (result < 0) {
+                operand2 = operand1 + operand3;
+                result = operand1 - operand2 + operand3;
+            }
             document.getElementById('question').textContent = `${operand1} - ? + ${operand3} = ${result}`;
         } else {
             result = operand1 - operand2 - operand3;
+            if (result < 0) {
+                operand2 = operand1 - operand3;
+                result = operand1 - operand2 - operand3;
+            }
             document.getElementById('question').textContent = `${operand1} - ? - ${operand3} = ${result}`;
         }
         correctAnswer = operand2;
         answerOptions = [operand2];
         while (answerOptions.length < 35) {
-            let randomAnswer = Math.floor(Math.random() * 400) - 200;
+            let randomAnswer = Math.floor(Math.random() * 400) + 1;
             if (!answerOptions.includes(randomAnswer)) {
                 answerOptions.push(randomAnswer);
             }
@@ -242,7 +262,7 @@ document.getElementById("playerForm").addEventListener("submit", function (event
         grade: grade,
         school: school,
         score: totalScore,
-        time: finaltime,
+        time: gameData.time,
       };
     
       axios.post('http://localhost:3000/api/game/createGame', gameData)
